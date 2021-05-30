@@ -8,12 +8,11 @@ app.use(express.urlencoded({ extended: true }))
 const cache = (req, res, next) => {
 	const username = req.query.username;
 
-	client.get(username, (err, data) => {
+	client.hgetall(username, (err, data) => {
 		if (err) throw err;
 
 		if (data !== null) {
 			res.json(data)
-			//res.send(setResponse(username, data));
 		} else next();
 	})
 }
@@ -26,23 +25,28 @@ const getRepos = async (req, res, next) => {
 		const response = await fetch(`https://api.github.com/users/${username}`);
 
 		const data = await response.json();
-		const repos = data.public_repos;
 
-		// clear cache after 10 minutes
-		// TODO: LRU cache implementation - https://redis.io/topics/lru-cache
-		client.setex(username, 600, repos);
+		// TODO: 
+		// 1. clear cache after 10 minutes
+		// 2. LRU cache implementation - https://redis.io/topics/lru-cache
+		client.hmset(username, {
+			'public_repos': `${data.public_repos}`,
+			'bio': `${data.bio}`,
+			'followers': `${data.followers}`,
+			'following': `${data.following}`,
+			'created': `${data.created_at}`,
+			'company': `${data.company}`,
+			'location': `${data.location}`,
+			'url': `${data.html_url}`,
+			'email': `${data.email}`
+		});
 
-		//res.send(setResponse(username, repos));
 		res.json(data)
 		console.log(data)
 		res.end()
 	} catch (err) {
 		console.error(err);
 	}
-}
-
-const setResponse = (username, repos) => {
-	return `<p>${username} has ${repos} Github repositories!</p>`;
 }
 
 app.get('/get', limiter, cache, getRepos);
