@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const fetch = require('node-fetch');
-//const redis = require('redis');
+const redis = require('redis');
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
@@ -11,7 +11,7 @@ const limiter = rateLimit({
 })
 
 const PORT = process.env.PORT || 3000;
-//const client = redis.createClient();
+const client = redis.createClient();
 const app = express();
 app.use(express.static('public'))
 const server = app.listen(3000, () => {
@@ -21,11 +21,11 @@ const server = app.listen(3000, () => {
 module.exports = {
 	express,
 	fetch,
-	//redis,
+	redis,
 	server,
 	rateLimit,
 	limiter,
 	PORT,
-	//client,
+	client,
 	app
 }

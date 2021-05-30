@@ -6,7 +6,7 @@ const {
 app.use(express.urlencoded({ extended: true }))
 
 const cache = (req, res, next) => {
-	const { username } = req.params;
+	const username = req.query.username;
 
 	client.get(username, (err, data) => {
 		if (err) throw err;
@@ -21,7 +21,7 @@ const cache = (req, res, next) => {
 const getRepos = async (req, res, next) => {
 	try {
 		console.log('Fetching...')
-		//const { username } = req.params;
+		console.log(req.query.username);
 		const username = req.query.username;
 		const response = await fetch(`https://api.github.com/users/${username}`);
 
@@ -30,7 +30,7 @@ const getRepos = async (req, res, next) => {
 
 		// clear cache after 10 minutes
 		// TODO: LRU cache implementation - https://redis.io/topics/lru-cache
-		//client.setex(username, 600, repos);
+		client.setex(username, 600, repos);
 
 		//res.send(setResponse(username, repos));
 		res.json(data)
@@ -45,4 +45,4 @@ const setResponse = (username, repos) => {
 	return `<p>${username} has ${repos} Github repositories!</p>`;
 }
 
-app.get('/get', limiter, /*cache,*/ getRepos);
+app.get('/get', limiter, cache, getRepos);
