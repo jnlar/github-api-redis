@@ -1,13 +1,8 @@
-/* 
- * TODO: 
- * 1.React integration
- */
 const { 
-	express, fetch, redis, rateLimit,
-	limiter, PORT, client, app, server 
+	env, express, fetch,
+	limiter, client, app, server 
 } = require('./modules');
-
-app.use(express.urlencoded({ extended: true }))
+const { formatResponse, filterData } = require('./format');
 
 const cache = (req, res, next) => {
 	const username = req.query.username;
@@ -16,42 +11,37 @@ const cache = (req, res, next) => {
 		if (err) throw err;
 
 		if (data !== null) {
-			res.json(data)
+			res.send(formatResponse(filterData(data)));
 		} else next();
 	})
 }
 
-const getRepos = async (req, res, next) => {
+const requestHeaders = {
+	authorization: `token ${process.env.TOKEN}`,
+	accept: 'application/vnd.github.v3+json'
+}
+
+const insertIntoCache = (username, data) => {
+	return client.hmset(username, data);
+}
+
+const getUserData = async (req, res) => {
 	try {
-		// TODO: 
-		// 1. Filter fetched JSON data to match data saved to redis
-		console.log('Fetching...')
-		console.log(req.query.username);
 		const username = req.query.username;
-		const response = await fetch(`https://api.github.com/users/${username}`);
+		const response = 
+			await fetch(`https://api.github.com/users/${username}`, requestHeaders);
 
 		const data = await response.json();
+		console.log(data);
 
-		// TODO: 
-		// 1. LRU cache implementation - https://redis.io/topics/lru-cache
-		client.hmset(username, {
-			'public_repos': `${data.public_repos}`,
-			'bio': `${data.bio}`,
-			'followers': `${data.followers}`,
-			'following': `${data.following}`,
-			'created': `${data.created_at}`,
-			'company': `${data.company}`,
-			'location': `${data.location}`,
-			'url': `${data.html_url}`,
-			'email': `${data.email}`
-		});
+		insertIntoCache(username, filterData(data));
 
-		res.json(data)
-		console.log(data)
-		res.end()
+		res.send(formatResponse(filterData(data)));
+		res.end();
 	} catch (err) {
 		console.error(err);
+		res.send(err);
 	}
 }
 
-app.get('/get', limiter, cache, getRepos);
+app.get('/get', limiter, cache, getUserData);

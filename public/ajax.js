@@ -1,26 +1,21 @@
-// TODO: use fetch instead of XMLHttpRequest (promise based!)
 const Ajax = {
 	gid: id => { return document.getElementById(id) },
 
 	init: function() {
-		this.getUsername();
+		this.getUserInfo();
 	},
 
-	getUsername: function() {
-		Ajax.gid('submit').addEventListener('click', () => {
-			let username = Ajax.gid('username').value;
+	getUserInfo: function() {
+		this.gid('submit').addEventListener('click', () => {
+			let username = this.gid('username').value;
 
-			let xhr = new XMLHttpRequest();
-
-			xhr.open('GET', '/get/?username=' + username, true)
-			xhr.onload = function() {
-				if (this.status == 200) {
-					Ajax.gid('output').innerHTML = this.responseText;
-				}
-			}
-
-			xhr.send();
-		})
+			fetch('/get/?username=' + username)
+			.then(async res => {
+				const data = await res.text();
+				this.gid('output').innerHTML = data;
+			})
+			.catch(err => console.log(err));
+		});
 	}
 }
 
