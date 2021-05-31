@@ -1,3 +1,7 @@
+/* 
+ * TODO: 
+ * 1.React integration
+ */
 const { 
 	express, fetch, redis, rateLimit,
 	limiter, PORT, client, app, server 
@@ -19,6 +23,8 @@ const cache = (req, res, next) => {
 
 const getRepos = async (req, res, next) => {
 	try {
+		// TODO: 
+		// 1. Filter fetched JSON data to match data saved to redis
 		console.log('Fetching...')
 		console.log(req.query.username);
 		const username = req.query.username;
@@ -27,8 +33,7 @@ const getRepos = async (req, res, next) => {
 		const data = await response.json();
 
 		// TODO: 
-		// 1. clear cache after 10 minutes
-		// 2. LRU cache implementation - https://redis.io/topics/lru-cache
+		// 1. LRU cache implementation - https://redis.io/topics/lru-cache
 		client.hmset(username, {
 			'public_repos': `${data.public_repos}`,
 			'bio': `${data.bio}`,
