@@ -2,7 +2,7 @@ const {
 	env, express, fetch,
 	limiter, client, app, server 
 } = require('./modules');
-const { formatResponse, filterData } = require('./format');
+const { filterCacheData, returnFormatData } = require('./format');
 
 const cache = (req, res, next) => {
 	const username = req.query.username;
@@ -11,7 +11,7 @@ const cache = (req, res, next) => {
 		if (err) throw err;
 
 		if (data !== null) {
-			res.send(formatResponse(filterData(data)));
+			res.send(returnFormatData(data));
 		} else next();
 	})
 }
@@ -34,9 +34,9 @@ const getUserData = async (req, res) => {
 		const data = await response.json();
 		console.log(data);
 
-		insertIntoCache(username, filterData(data));
+		insertIntoCache(username, filterCacheData(data));
 
-		res.send(formatResponse(filterData(data)));
+		res.send(returnFormatData(data));
 		res.end();
 	} catch (err) {
 		console.error(err);

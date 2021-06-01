@@ -1,4 +1,4 @@
-const filterData = (data) => {
+const filterCacheData = (data) => {
 	data = {
 		'login': `${data.login}`,
 		'public_repos': `${data.public_repos}`,
@@ -14,8 +14,8 @@ const filterData = (data) => {
 	return data;
 }
 
-const formatResponse = (data) => {
-	let response = `
+const formatData = (data) => {
+	let format = `
 		<p id="login">user: ${data.login}</p>
 		<p id="bio">bio: ${data.bio}</p>
 		<p id="repos">repos: ${data.public_repos}</p>
@@ -26,7 +26,11 @@ const formatResponse = (data) => {
 		<p id="url">github url: ${data.html_url}</p>
 		<p id="email">email: ${data.email}</p>`;
 
-	return response;
+	return format;
 }
 
-module.exports = { formatResponse, filterData }
+const returnFormatData = (data) => {
+	return formatData(filterCacheData(data));
+}
+
+module.exports = { filterCacheData, returnFormatData }
