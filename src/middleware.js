@@ -2,7 +2,7 @@ const {env, fetch, client, rateLimit} = require('./modules');
 const filterData = require('./format');
 
 const limiter = rateLimit({
-	// max 50 requests every 30 seconds
+	/* max 50 requests every 30 seconds */
 	windowMs: 30 * 1000,
 	max: 50
 })

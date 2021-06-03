@@ -1,8 +1,8 @@
-import React from 'react';
-import { useState, /*useEffect*/ } from 'react';
-import Spinner from "./Spinner/Spinner";
+import React, { useState, /*useEffect*/ } from 'react';
+import Header from "./components/Header";
+import Spinner from "./components/Spinner";
 
-const App = () => {
+export default App = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const onSubmitHandler = (event) => {
@@ -28,8 +28,8 @@ const App = () => {
 
 	return (
 		<div className="App">
+			<Header />
 			<form onSubmit={onSubmitHandler}>
-				<legend>Github API</legend>
 				<fieldset>
 					<label htmlFor="githubUsername">Github Username:</label>
 					<input
@@ -45,5 +45,3 @@ const App = () => {
 		</div>
 	);
 };
-
-export default App;
