@@ -1,6 +1,7 @@
-import React, { useState, /*useEffect*/ } from 'react';
+import React, { useState, } from 'react';
 import Header from "./components/Header";
 import Spinner from "./components/Spinner";
+import Form from "./components/Form";
 import User from "./components/User";
 
 const App = () => {
@@ -9,18 +10,16 @@ const App = () => {
 
 	const onSubmitHandler = (event) => {
 		event.preventDefault();
+		let user = event.target.githubUsername.value;
 
-		if (event.target.githubUsername.value.trim() !== "") {
-			//document.getElementById("results").innerHTML = "";
+		if (user.trim() !== "") {
 			setIsLoading(true);
 
-			fetch(`/get/?username=${event.target.githubUsername.value}`)
+			fetch(`/get/?username=${user}`)
 			.then(async res => {
 				let data = await res.json();
-				//console.log(data);
 				setUserInfo(data);
 				setIsLoading(false);
-				//document.getElementById("results").innerHTML = data;
 			})
 			.catch(err => console.log(err));
 
@@ -32,18 +31,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<Header />
-			<form onSubmit={onSubmitHandler}>
-				<fieldset>
-					<label htmlFor="githubUsername">Github Username:</label>
-					<input
-						type="text"
-						id="githubUsername"
-						name="githubUsername"
-						className="githubUsername"
-					/>
-					<input type="submit" />
-				</fieldset>
-			</form>
+			<Form onSubmit={onSubmitHandler}/>
 			{isLoading && <Spinner />}
 			<User userData={userInfo} />
 		</div>
