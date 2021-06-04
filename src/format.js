@@ -1,5 +1,6 @@
 const filterData = (data) => {
 	data = {
+		'id': `${data.id}`,
 		'login': `${data.login}`,
 		'public_repos': `${data.public_repos}`,
 		'bio': `${data.bio}`,

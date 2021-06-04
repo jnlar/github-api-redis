@@ -1,12 +1,11 @@
-import {Fragment} from 'react';
+import React from 'react';
+import Template from './Template';
 
-const User = (props) => {
+const User = (data) => {
 	return (
 		<div className="userData">
-			{props.userData && Object.keys(props.userData).map(keyName => {
-				return <Fragment key={keyName}>
-					<h2>{keyName}:</h2><p>{props.userData[keyName]}</p>
-				</Fragment>
+			{data.userData && Object.keys(data).map(keyName => {
+				return <Template key={keyName} data={data}></Template>
 			})}
 		</div>
 	)
