@@ -1,23 +1,26 @@
 import React, { useState, /*useEffect*/ } from 'react';
 import Header from "./components/Header";
 import Spinner from "./components/Spinner";
+import User from "./components/User";
 
-export default App = () => {
+const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
+	const [userInfo, setUserInfo] = useState(null);
 
 	const onSubmitHandler = (event) => {
 		event.preventDefault();
 
 		if (event.target.githubUsername.value.trim() !== "") {
-			document.getElementById("results").innerHTML = "";
+			//document.getElementById("results").innerHTML = "";
 			setIsLoading(true);
 
 			fetch(`/get/?username=${event.target.githubUsername.value}`)
 			.then(async res => {
-				let data = await res.text();
-				console.log(data);
+				let data = await res.json();
+				//console.log(data);
+				setUserInfo(data);
 				setIsLoading(false);
-				document.getElementById("results").innerHTML = data;
+				//document.getElementById("results").innerHTML = data;
 			})
 			.catch(err => console.log(err));
 
@@ -42,6 +45,9 @@ export default App = () => {
 				</fieldset>
 			</form>
 			{isLoading && <Spinner />}
+			<User userData={userInfo} />
 		</div>
 	);
 };
+
+export default App;

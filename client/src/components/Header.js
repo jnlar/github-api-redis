@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default Header = () => {
+const Header = () => {
 	return ( 
 		<header>
 			<h2>Github API</h2>
 		</header>
 	)
 }
+
+export default Header;
