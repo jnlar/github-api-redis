@@ -9,4 +9,5 @@ You'll need to run `npm start` in both the root(server) and client(frontend) fol
 react app will ask to serve on another port since 3000 is taken.  
 
 #### Recent changes:
-- data fetched from API is returned in JSON, this way we can better handle the data on the front-end with react.
+- Data fetched from API is returned in JSON, this way we can better handle the data on the front-end with react.
+- React components implemented to handle and format returned JSON data from backend API
