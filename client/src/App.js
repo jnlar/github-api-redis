@@ -9,26 +9,26 @@ const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [userInfo, setUserInfo] = useState(null);
 
-	console.log(typeof isLoading);
-	const onSubmitHandler = (event) => {
+	const onSubmitHandler = async (event) => {
 		event.preventDefault();
 		let user = event.target.githubUsername.value;
 
 		if (user.trim() !== "") {
-			setIsLoading(true);
+			try {
+				setIsLoading(true);
 
-			fetch(`/api/?username=${user}`)
-			.then(async res => {
-				let data = await res.json();
+				const response = await fetch(`/api/?username=${user}`)
+				const data = await response.json()
+
 				setUserInfo(data);
 				setIsLoading(false);
-			})
-			.catch(err => console.log(err));
-
+			} catch (err) {
+				console.log(err);
+			}
 		} else {
 			window.alert("Please enter a github username.");
 		}
-	};
+	}
 
 	return (
 		<div className="container">

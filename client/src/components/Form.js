@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Form = (props) => {
+const Form = (handler) => {
 	return (
-		<form onSubmit={props.onSubmit}>
+		<form onSubmit={handler.onSubmit}>
 			<fieldset>
 				<label htmlFor="githubUsername">Github Username:</label>
 				<input

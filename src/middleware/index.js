@@ -1,5 +1,7 @@
-const {env, fetch, client, rateLimit} = require('./modules');
-const filterData = require('./format');
+const {env, fetch, rateLimit} = require('../modules');
+const filterData = require('../util/filter-json');
+const redis = require('./redis');
+const cache = redis.cache;
 
 const limiter = rateLimit({
 	/* max 50 requests every 30 seconds */
@@ -16,22 +18,6 @@ const requestHeaders = {
 	accept: 'application/vnd.github.v3+json'
 }
 
-const insertIntoCache = (username, data) => {
-	return client.hmset(username, data);
-}
-
-const cache = (req, res, next) => {
-	const username = req.query.username;
-
-	client.hgetall(username, (err, data) => {
-		if (err) next(err);
-
-		if (data !== null) {
-			res.send(data);
-		} else next();
-	})
-}
-
 const getUserData = async (req, res) => {
 	try {
 		const username = req.query.username;
@@ -42,7 +28,7 @@ const getUserData = async (req, res) => {
 
 		if (data.message) return res.send(data);
 
-		insertIntoCache(username, filterData(data));
+		redis.insertIntoCache(username, filterData(data));
 
 		console.log(data);
 		return res.send(filterData(data));

@@ -3,6 +3,7 @@ const filterData = (data) => {
 		'id': `${data.id}`,
 		'login': `${data.login}`,
 		'public_repos': `${data.public_repos}`,
+		'repos_url': `${data.repos_url}`,
 		'bio': `${data.bio}`,
 		'followers': `${data.followers}`,
 		'following': `${data.following}`,
