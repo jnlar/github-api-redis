@@ -1,7 +1,7 @@
 ## github-api-redis
 #### Installing dependencies:  
 Backend (run in root directory): `npm i`  
-Brontend (run in client directory) : `npm i`
+Frontend (run in client directory) : `npm i`
 
 #### Development:  
 Run `npm start` in the root directory
