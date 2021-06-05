@@ -3,11 +3,13 @@ import Header from "./components/Header";
 import Spinner from "./components/Spinner";
 import Form from "./components/Form";
 import User from "./components/User";
+import './index.scss';
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [userInfo, setUserInfo] = useState(null);
 
+	console.log(typeof isLoading);
 	const onSubmitHandler = (event) => {
 		event.preventDefault();
 		let user = event.target.githubUsername.value;
@@ -15,7 +17,7 @@ const App = () => {
 		if (user.trim() !== "") {
 			setIsLoading(true);
 
-			fetch(`/get/?username=${user}`)
+			fetch(`/api/?username=${user}`)
 			.then(async res => {
 				let data = await res.json();
 				setUserInfo(data);
@@ -29,7 +31,7 @@ const App = () => {
 	};
 
 	return (
-		<div className="App">
+		<div className="container">
 			<Header />
 			<Form onSubmit={onSubmitHandler}/>
 			{isLoading && <Spinner />}
@@ -39,3 +41,4 @@ const App = () => {
 };
 
 export default App;
+

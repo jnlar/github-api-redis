@@ -1,10 +1,17 @@
 import React from 'react'; 
 
 const Template = ({ data }) => {
+	if (data.userData.message) {
+		return <div className="my-card">
+			<div className="my-card-content">
+				<p><em>Oops!</em> user doesn't exist!</p>
+			</div>
+		</div>
+	} 
+
 	return (
-		<div className="card">
-		{console.log(data.userData)}
-			<div className="card-inner">
+		<div className="my-card">
+			<div className="my-card-content">
 				<h2>user: {data.userData.login}</h2>
 				<p>repos: {data.userData.public_repos}</p>
 				<p>bio: {data.userData.bio}</p>

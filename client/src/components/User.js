@@ -1,5 +1,6 @@
 import React from 'react';
 import Template from './Template';
+import PropTypes from 'prop-types';
 
 const User = (data) => {
 	return (
@@ -10,5 +11,13 @@ const User = (data) => {
 		</div>
 	)
 };
+
+/* TODO:
+ * can we pass in isLoading as prop and do ternary operation? 
+ * at the moment when we pass isLoading as a prop it returns undefined  
+*/
+User.propTypes = {
+	isLoading: PropTypes.bool
+}
 
 export default User;

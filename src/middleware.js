@@ -7,6 +7,10 @@ const limiter = rateLimit({
 	max: 50
 })
 
+const notFound = (req, res, next) => {
+	res.status(404).send();
+}
+
 const requestHeaders = {
 	authorization: `token ${process.env.TOKEN}`,
 	accept: 'application/vnd.github.v3+json'
@@ -14,14 +18,13 @@ const requestHeaders = {
 
 const insertIntoCache = (username, data) => {
 	return client.hmset(username, data);
-
 }
 
 const cache = (req, res, next) => {
 	const username = req.query.username;
 
 	client.hgetall(username, (err, data) => {
-		if (err) throw err;
+		if (err) next(err);
 
 		if (data !== null) {
 			res.send(data);
@@ -36,17 +39,17 @@ const getUserData = async (req, res) => {
 			await fetch(`https://api.github.com/users/${username}`, requestHeaders);
 
 		const data = await response.json();
-		console.log(data);
+
+		if (data.message) return res.send(data);
 
 		insertIntoCache(username, filterData(data));
 
-		res.send(filterData(data));
-		res.end();
+		console.log(data);
+		return res.send(filterData(data));
 	} catch (err) {
 		console.error(err);
-		res.send(err);
+		return res.send(err);
 	}
-
 }
 
-module.exports = {limiter, cache, getUserData};
+module.exports = {limiter, cache, getUserData, notFound};

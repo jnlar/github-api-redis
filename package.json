@@ -5,16 +5,18 @@
   "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server"
+    "start": "concurrently \"nodemon server\" \" cd client && npm start\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "compression": "^1.7.4",
+    "concurrently": "^6.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
+    "helmet": "^4.6.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
     "redis": "^3.1.2"
