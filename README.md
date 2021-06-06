@@ -3,7 +3,7 @@
 Backend (run in root directory): `npm i`  
 Frontend (run in client directory) : `npm i`
 
-#### Development:  
+#### Deployment:  
 Starting backend (node.js) - run `npm start` in the root directory  
 Starting frontend (reactjs) - run `cd client && npm start` in the root directory (or `cd client` and then `npm start`)
 
@@ -19,3 +19,4 @@ Starting frontend (reactjs) - run `cd client && npm start` in the root directory
 - Spinner animation is currently placed above fetched data when performing an additional search,
 fetched data should be removed and replaced with spinner animation when searching for new user.
 - Add hyperlink that fetches repo data of searched user, create new component that will render the users repo data.
+- Implement node API endpoint for fetching user repo data
