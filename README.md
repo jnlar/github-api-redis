@@ -1,11 +1,13 @@
 ## github-api-redis
+
 #### Installing dependencies:  
 Backend (run in root directory): `npm i`  
 Frontend (run in client directory) : `npm i`
 
 #### Deployment:  
 Starting backend (node.js) - run `npm start` in the root directory  
-Starting frontend (reactjs) - run `cd client && npm start` in the root directory (or `cd client` and then `npm start`)
+Starting frontend (reactjs) - run `cd client && npm start` in the root directory (or `cd client` and then `npm start`), the start script will ask to deploy the
+client service on another port (since 3000 is taken), type `y`
 
 #### Recent changes:
 - Data fetched from API is returned in JSON, this way we can better handle the data on the front-end with react.
