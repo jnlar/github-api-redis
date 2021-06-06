@@ -6,7 +6,7 @@ const User = (data) => {
 	return (
 		<div className="userData">
 			{data.userData && Object.keys(data).map(keyName => {
-				return <Template key={keyName} data={data}></Template>
+				return <Template key={keyName} data={data}></Template>;
 			})}
 		</div>
 	)
