@@ -16,6 +16,8 @@ be listening on port 8080
 - Conditional rendering of returned JSON if property is null implemented
 - reverted start script in package.json in project root
 - Implemented additional fetch request to github API to fetch user repo data
+- Fix filter-json.js filterRepoData, if a user had less than 3 repos nothing would render to the screen since we where using
+a static template to filter the JSON data.
 
 #### TODO:
 - Styling - When in doubt, refer to [material.io](https://material.io). [material cards](https://www.material.io/components/cards) looks pretty cool.

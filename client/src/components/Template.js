@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import {Fragment} from 'react';
 
 const IsNotUser = () => {
@@ -16,13 +16,13 @@ const IsUser = ({ data }) => {
 			<p>repos: <a href={`${data.userData.repos_url}`}>
 				{data.userData.public_repos}</a></p>
 			{
-				checkIfPropNull(data.userData.bio, 
+				checkIfPropNull(data.userData.bio,
 				<p>bio: {data.userData.bio}</p>)
 			}
 			<p>followers: {data.userData.followers}</p>
 			<p>following: {data.userData.following}</p>
 			{
-				checkIfPropNull(data.userData.company, 
+				checkIfPropNull(data.userData.company,
 				<p>company: {data.userData.company}</p>)
 			}
 			{
@@ -32,7 +32,7 @@ const IsUser = ({ data }) => {
 			<p>github: <a href={`${data.userData.html_url}`}>
 				{data.userData.html_url}</a></p>
 			{
-				checkIfPropNull(data.userData.email, 
+				checkIfPropNull(data.userData.email,
 				<p>email: {data.userData.email}</p>)
 			}
 		</Fragment>

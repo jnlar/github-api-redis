@@ -31,16 +31,16 @@ const getUserData = async (req, res) => {
 
 		const fetchUserRepos = await fetch(`${URL}${username}/repos`, requestHeaders);
 		const userRepoData = await fetchUserRepos.json();
+		const sliceRepoData = userRepoData.slice(0, 3);
 
 		const filteredUserData = f.filterUserData(userData);
-		const filteredRepoData = f.filterRepoData(userRepoData);
+		const filteredRepoData = f.filterRepoData(sliceRepoData);
 
 		const joinedData = {...filteredUserData, ...filteredRepoData};
 
 		redis.insertIntoCache(username, joinedData);
 
 		return res.send(joinedData);
-		console.log(joinedData);
 	} catch (err) {
 		console.error(err);
 		return res.send(err);

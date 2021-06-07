@@ -16,26 +16,20 @@ const filterUserData = (data) => {
 	return data;
 }
 
+// iterate though array, where each item in array is object
+// create new object n times for n objects in sliced array. n = max (3)
 const filterRepoData = (data) => {
-	data = {
-		"0_name": `${data[0].name}`,
-		"0_description": `${data[0].description}`,
-		"0_html_url": `${data[0].html_url}`,
-		"0_star_count": `${data[0].startgazers_count}`,
-		"0_forks_count": `${data[0].forks_count}`,
-		"1_name": `${data[1].name}`,
-		"1_description": `${data[1].description}`,
-		"1_html_url": `${data[1].html_url}`,
-		"1_star_count": `${data[1].startgazers_count}`,
-		"1_forks_count": `${data[1].forks_count}`,
-		"2_name": `${data[2].name}`,
-		"2_description": `${data[2].description}`,
-		"2_html_url": `${data[2].html_url}`,
-		"2_star_count": `${data[2].startgazers_count}`,
-		"2_forks_count": `${data[2].forks_count}`,
+	let newData = {}
+
+	for (let i = 0; i < data.length; i++) {
+		newData[i + '_repo_name'] = `${data[i].name}`;
+		newData[i + '_repo_desc'] = `${data[i].description}`;
+		newData[i + '_repo_url'] = `${data[i].html_url}`;
+		newData[i + '_repo_stars'] = `${data[i].startgazers_count}`;
+		newData[i + '_repo_forks'] = `${data[i].forks_count}`;
 	}
 
-	return data;
+	return newData;
 }
 
 module.exports = {filterUserData, filterRepoData};
