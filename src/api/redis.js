@@ -1,4 +1,4 @@
-const {client} = require('../modules');
+const {client} = require('../util/modules');
 
 const insertIntoCache = (username, data) => {
 	return client.hmset(username, data);

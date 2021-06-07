@@ -17,7 +17,7 @@ const App = () => {
 			try {
 				setIsLoading(true);
 
-				const response = await fetch(`/api/?username=${user}`)
+				const response = await fetch(`/api/user/?username=${user}`)
 				const data = await response.json()
 
 				setUserInfo(data);
@@ -41,4 +41,3 @@ const App = () => {
 };
 
 export default App;
-

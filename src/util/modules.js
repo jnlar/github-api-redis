@@ -8,7 +8,7 @@ const compression = require('compression');
 const PORT = process.env.PORT || 3000;
 const client = redis.createClient();
 const app = express();
-app.use(compression())
+app.use(compression());
 const server = app.listen(PORT, () => {
 	console.log(`listening on port: ${PORT}`);
 })

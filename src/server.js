@@ -1,10 +1,11 @@
-const { app, express } = require('./modules');
-const mware = require('./middleware'); 
+const { app, express } = require('./util/modules');
+const api = require('./api');
 const helmet = require ('helmet');
 const router = express.Router();
 
 router.use(helmet());
-router.use(express.json())
-router.get('/', mware.limiter, mware.cache, mware.getUserData);
-app.use('/api', router);
-app.use(mware.notFound);
+router.use(express.json());
+router.get('/', api.limiter, api.cache, api.getUserData);
+
+app.use('/api/user', router);
+app.use(api.notFound);
