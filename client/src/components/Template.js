@@ -1,6 +1,7 @@
 import React from 'react';
 import {Fragment} from 'react';
-import {Card, CardContent, Typography} from '@material-ui/core';
+import {Card, CardContent, Typography, Box} from '@material-ui/core';
+
 
 const IsNotUser = () => {
 	return <p><em>Oops!</em> user doesn't exist!</p>
@@ -42,6 +43,7 @@ const IsUser = ({ data }) => {
 
 const Template = ({ data }) => {
 	return (
+		<Box boxShadow={3}>
 		<Card variant="outlined">
 			<CardContent>
 				{
@@ -53,6 +55,7 @@ const Template = ({ data }) => {
 				}
 			</CardContent>
 		</Card>
+		</Box>
 	)
 }
 
