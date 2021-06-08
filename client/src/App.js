@@ -1,6 +1,6 @@
 import React, { useState, } from 'react';
 import Header from "./components/Header";
-import Spinner from "./components/Spinner";
+//import Spinner from "./components/Spinner";
 import Form from "./components/Form";
 import User from "./components/User";
 import './index.scss';
@@ -40,8 +40,7 @@ const App = () => {
 			justify="center">
 			<Header />
 			<Form onSubmit={onSubmitHandler}/>
-			{isLoading && <Spinner />}
-			<User userData={userInfo} />
+			<User userData={userInfo} isLoading={isLoading} />
 		</Grid>
 	);
 };

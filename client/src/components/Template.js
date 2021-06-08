@@ -13,28 +13,28 @@ const propIsNull = (property, render) => {
 const IsUser = ({ data }) => {
 	return (
 		<Fragment>
-			<Typography component="h2">{data.userData.login}</Typography>
-			<p>repos: <a href={`${data.userData.repos_url}`}>
-				{data.userData.public_repos}</a></p>
+			<h2>user: {data.login}</h2>
+			<p>repos: <a href={`${data.repos_url}`}>
+				{data.public_repos}</a></p>
 			{
-				propIsNull(data.userData.bio,
-				<p>bio: {data.userData.bio}</p>)
+				propIsNull(data.bio,
+				<p>bio: {data.bio}</p>)
 			}
-			<p>followers: {data.userData.followers}</p>
-			<p>following: {data.userData.following}</p>
+			<p>followers: {data.followers}</p>
+			<p>following: {data.following}</p>
 			{
-				propIsNull(data.userData.company,
-				<p>company: {data.userData.company}</p>)
+				propIsNull(data.company,
+				<p>company: {data.company}</p>)
 			}
 			{
-				propIsNull(data.userData.location,
-				<p>location: {data.userData.location}</p>)
+				propIsNull(data.location,
+				<p>location: {data.location}</p>)
 			}
-			<p>github: <a href={`${data.userData.html_url}`}>
-				{data.userData.html_url}</a></p>
+			<p>github: <a href={`${data.html_url}`}>
+				{data.html_url}</a></p>
 			{
-				propIsNull(data.userData.email,
-				<p>email: {data.userData.email}</p>)
+				propIsNull(data.email,
+				<p>email: {data.email}</p>)
 			}
 		</Fragment>
 	)
@@ -45,7 +45,7 @@ const Template = ({ data }) => {
 		<Card variant="outlined">
 			<CardContent>
 				{
-					data.userData.message ? (
+					data.message ? (
 						<IsNotUser />
 					) : (
 						<IsUser data={data} />
