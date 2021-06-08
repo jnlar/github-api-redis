@@ -1,5 +1,4 @@
-import React from 'react';
-import {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
 	Card, 
 	CardContent, 
@@ -21,29 +20,57 @@ const IsUser = ({ data }) => {
 
 	return (
 		<Fragment>
-			<Typography className={classes.title} component="h2">{data.login}</Typography>
+			<Typography 
+				className={classes.title} 
+				component="h2">{data.login}
+			</Typography>
 			{
 				propIsNull(data.bio,
 				<Fragment>
-					<Typography variant="h6" component="h3">Bio</Typography>
-					<Typography color="textSecondary" component="p">{data.bio}</Typography>
+					<Typography 
+						variant="h6" 
+						component="h3">Bio
+					</Typography>
+					<Typography 
+						className={classes.p} 
+						color="textSecondary" 
+						component="p">{data.bio}
+					</Typography>
 				</Fragment>)
 			}
-			<Typography component="p">Followers: {data.followers}</Typography>
-			<Typography component="p">Following: {data.following}</Typography>
+			<Typography 
+				className={classes.p} 
+				component="p">Followers: {data.followers}
+			</Typography>
+			<Typography 
+				className={classes.p}
+				component="p">Following: {data.following}
+			</Typography>
 			{
 				propIsNull(data.company,
-				<Typography component="p">Mompany: {data.company}</Typography>)
+				<Typography 
+					className={classes.p} 
+					component="p">Company: {data.company}
+				</Typography>)
 			}
 			{
 				propIsNull(data.location,
-				<Typography>location: {data.location}</Typography>)
+				<Typography 
+					className={classes.p} 
+					component="p">Location: {data.location}
+				</Typography>)
 			}
-			<Typography>github: <a href={`${data.html_url}`}>
-				{data.html_url}</a></Typography>
+			<Typography 
+				className={classes.p}
+				component="p">Github: <a href={`${data.html_url}`}>
+				{data.html_url}</a>
+			</Typography>
 			{
 				propIsNull(data.email,
-				<Typography>email: {data.email}</Typography>)
+				<Typography 
+					className={classes.p} 
+					component="p">email: {data.email}
+				</Typography>)
 			}
 			<Button>Repos ({data.public_repos})</Button>
 		</Fragment>
@@ -54,7 +81,6 @@ const Template = ({ data }) => {
 	const classes = useStyles();
 
 	return (
-		<Box boxShadow={3}>
 		<Card className={classes.user} variant="outlined">
 			<CardContent>
 				{
@@ -66,7 +92,6 @@ const Template = ({ data }) => {
 				}
 			</CardContent>
 		</Card>
-		</Box>
 	)
 }
 
