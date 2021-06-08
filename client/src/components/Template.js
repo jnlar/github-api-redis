@@ -4,9 +4,9 @@ import {
 	Card, 
 	CardContent, 
 	Typography,
-	makeStyles,
 	Button, 
 	Box } from '@material-ui/core';
+import useStyles from '../Style';
 
 const IsNotUser = () => {
 	return <p><em>Oops!</em> user doesn't exist!</p>
@@ -15,17 +15,6 @@ const IsNotUser = () => {
 const propIsNull = (property, render) => {
 	return property === 'null' ? '' : render;
 }
-
-const useStyles = makeStyles({
-	user: {
-		minWidth: 400,
-		maxWidth: 600,
-	},
-
-	title: {
-		fontSize: 29,
-	}
-});
 
 const IsUser = ({ data }) => {
 	const classes = useStyles();

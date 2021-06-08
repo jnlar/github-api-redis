@@ -12,11 +12,10 @@ const error = () => {
 			justify="center">
 			<header>
 			<h1>404 Page not found</h1>
-			<img src={Coffee} />
+			<img alt="coffee cup spilling over" src={Coffee} />
 			</header>
 		</Grid>
 	)
 }
 
 export default error;
-

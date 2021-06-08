@@ -3,12 +3,13 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import User from "./components/User";
 import About from "./components/About";
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Error from "./components/Error";
-import {Grid} from "@material-ui/core";
+import {
+	Paper,
+	Tabs,
+	Tab,
+	Grid
+} from '@material-ui/core';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,16 +17,7 @@ import {
   NavLink,
   Redirect } from "react-router-dom";
 import './index.scss';
-
-const useStyles = makeStyles({
-	root: {
-	  flexGrow: 1,
-	},
-	aTag: {
-		padding: "10px 20px",
-		textDecoration: "none",
-	}
-  });
+import useStyles from './Style';
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +53,7 @@ const App = () => {
 
 	return (
 		<Router>
-	  <Paper className={classes.root}>
+			<Paper className={classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}
