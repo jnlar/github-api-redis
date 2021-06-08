@@ -4,6 +4,7 @@ import Spinner from "./components/Spinner";
 import Form from "./components/Form";
 import User from "./components/User";
 import './index.scss';
+import {Grid} from "@material-ui/core";
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,12 +32,17 @@ const App = () => {
 	}
 
 	return (
-		<div className="container">
+		<Grid
+			container
+			spacing={0}
+			direction="column"
+			alignItems="center"
+			justify="center">
 			<Header />
 			<Form onSubmit={onSubmitHandler}/>
 			{isLoading && <Spinner />}
 			<User userData={userInfo} />
-		</div>
+		</Grid>
 	);
 };
 

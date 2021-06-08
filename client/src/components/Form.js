@@ -1,17 +1,18 @@
 import React from 'react';
+import {Button, TextField} from '@material-ui/core';
 
 const Form = (handler) => {
 	return (
 		<form onSubmit={handler.onSubmit}>
 			<fieldset>
-				<label htmlFor="githubUsername">Github Username:</label>
-				<input
+				<TextField
+					helperText="Github Username"
 					type="text"
 					id="githubUsername"
 					name="githubUsername"
 					className="githubUsername"
 				/>
-				<input type="submit" />
+				<Button type="submit">Submit</Button>
 			</fieldset>
 		</form>
 	)

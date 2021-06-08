@@ -1,38 +1,39 @@
 import React from 'react';
 import {Fragment} from 'react';
+import {Card, CardContent, Typography} from '@material-ui/core';
 
 const IsNotUser = () => {
 	return <p><em>Oops!</em> user doesn't exist!</p>
 }
 
-const checkIfPropNull = (property, render) => {
+const propIsNull = (property, render) => {
 	return property === 'null' ? '' : render;
 }
 
 const IsUser = ({ data }) => {
 	return (
 		<Fragment>
-			<h2>user: {data.userData.login}</h2>
+			<Typography component="h2">{data.userData.login}</Typography>
 			<p>repos: <a href={`${data.userData.repos_url}`}>
 				{data.userData.public_repos}</a></p>
 			{
-				checkIfPropNull(data.userData.bio,
+				propIsNull(data.userData.bio,
 				<p>bio: {data.userData.bio}</p>)
 			}
 			<p>followers: {data.userData.followers}</p>
 			<p>following: {data.userData.following}</p>
 			{
-				checkIfPropNull(data.userData.company,
+				propIsNull(data.userData.company,
 				<p>company: {data.userData.company}</p>)
 			}
 			{
-				checkIfPropNull(data.userData.location,
+				propIsNull(data.userData.location,
 				<p>location: {data.userData.location}</p>)
 			}
 			<p>github: <a href={`${data.userData.html_url}`}>
 				{data.userData.html_url}</a></p>
 			{
-				checkIfPropNull(data.userData.email,
+				propIsNull(data.userData.email,
 				<p>email: {data.userData.email}</p>)
 			}
 		</Fragment>
@@ -41,8 +42,8 @@ const IsUser = ({ data }) => {
 
 const Template = ({ data }) => {
 	return (
-		<div className="my-card">
-			<div className="my-card-content">
+		<Card variant="outlined">
+			<CardContent>
 				{
 					data.userData.message ? (
 						<IsNotUser />
@@ -50,8 +51,8 @@ const Template = ({ data }) => {
 						<IsUser data={data} />
 					)
 				}
-			</div>
-		</div>
+			</CardContent>
+		</Card>
 	)
 }
 

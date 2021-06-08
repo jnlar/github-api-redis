@@ -17,19 +17,19 @@ const filterUserData = (data) => {
 }
 
 // iterate though array, where each item in array is object
-// create new object n times for n objects in sliced array. n = max (3)
+// create new object for n items in sliced array. n = max (3)
 const filterRepoData = (data) => {
-	let newData = {}
+	let newObj = {}
 
 	for (let i = 0; i < data.length; i++) {
-		newData[i + '_repo_name'] = `${data[i].name}`;
-		newData[i + '_repo_desc'] = `${data[i].description}`;
-		newData[i + '_repo_url'] = `${data[i].html_url}`;
-		newData[i + '_repo_stars'] = `${data[i].startgazers_count}`;
-		newData[i + '_repo_forks'] = `${data[i].forks_count}`;
+		newObj[i + '_repo_name'] = `${data[i].name}`;
+		newObj[i + '_repo_desc'] = `${data[i].description}`;
+		newObj[i + '_repo_url'] = `${data[i].html_url}`;
+		newObj[i + '_repo_stars'] = `${data[i].startgazers_count}`;
+		newObj[i + '_repo_forks'] = `${data[i].forks_count}`;
 	}
 
-	return newData;
+	return newObj;
 }
 
 module.exports = {filterUserData, filterRepoData};

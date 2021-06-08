@@ -31,10 +31,10 @@ const getUserData = async (req, res) => {
 
 		const fetchUserRepos = await fetch(`${URL}${username}/repos`, requestHeaders);
 		const userRepoData = await fetchUserRepos.json();
-		const sliceRepoData = userRepoData.slice(0, 3);
+		const slicedRepoData = userRepoData.slice(0, 3);
 
 		const filteredUserData = f.filterUserData(userData);
-		const filteredRepoData = f.filterRepoData(sliceRepoData);
+		const filteredRepoData = f.filterRepoData(slicedRepoData);
 
 		const joinedData = {...filteredUserData, ...filteredRepoData};
 
