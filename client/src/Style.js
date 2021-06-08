@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 	},
 
 	p: {
-		padding: "10px 0",
+		padding: "3px 0",
 	},
 
 	paper: {
