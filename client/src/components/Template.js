@@ -5,7 +5,8 @@ import {
 	CardContent, 
 	Typography,
 	makeStyles,
-	Button } from '@material-ui/core';
+	Button, 
+	Box } from '@material-ui/core';
 
 const IsNotUser = () => {
 	return <p><em>Oops!</em> user doesn't exist!</p>
@@ -64,6 +65,7 @@ const Template = ({ data }) => {
 	const classes = useStyles();
 
 	return (
+		<Box boxShadow={3}>
 		<Card className={classes.user} variant="outlined">
 			<CardContent>
 				{
@@ -75,6 +77,7 @@ const Template = ({ data }) => {
 				}
 			</CardContent>
 		</Card>
+		</Box>
 	)
 }
 

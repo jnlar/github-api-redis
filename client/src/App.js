@@ -1,19 +1,42 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import Header from "./components/Header";
 import Form from "./components/Form";
 import User from "./components/User";
+import About from "./components/About";
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Error from "./components/Error";
 import {Grid} from "@material-ui/core";
-import './index.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
-} from "react-router-dom";
+  NavLink,
+  Redirect } from "react-router-dom";
+import './index.scss';
+
+const useStyles = makeStyles({
+	root: {
+	  flexGrow: 1,
+	},
+	aTag: {
+		padding: "10px 20px",
+		textDecoration: "none",
+	}
+  });
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [userInfo, setUserInfo] = useState(null);
+	const [value, setValue] = React.useState(0);
+	const classes = useStyles();
+  
+	const handleChange = (event, newValue) => {
+	  setValue(newValue);
+	};
+  
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
@@ -38,9 +61,18 @@ const App = () => {
 
 	return (
 		<Router>
-			<Link exact to="/">App</Link>
-			<Link to="/about">About</Link>
-			<Switch>
+	  <Paper className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered>
+        <Tab label={<NavLink className={classes.aTag} to="/">Home</NavLink>} />
+        <Tab label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
+      </Tabs>
+    </Paper>
+		  <Switch>
 				<Route exact path="/">
 					<Grid
 						container
@@ -52,12 +84,16 @@ const App = () => {
 						<Form onSubmit={onSubmitHandler}/>
 						<User userData={userInfo} isLoading={isLoading} />
 					</Grid>
-				</Route>
+			</Route>
 				<Route path="/about">
-					<h2>hi</h2>
+					<About />
 				</Route>
-			</Switch>
-		</Router>
+				<Route path="/error">
+					<Error />
+				</Route>
+				<Redirect to="/error"></Redirect>
+		  </Switch>
+	  </Router>
 	);
 };
 
