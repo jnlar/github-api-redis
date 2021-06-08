@@ -1,13 +1,14 @@
 import React from 'react';
 import Template from './Template';
 import PropTypes from 'prop-types';
+import Spinner from './Spinner';
 
-const User = (data) => {
+const User = ({userData, isLoading}) => {
 	return (
 		<div className="userData">
-			{data.userData && Object.keys(data).map(keyName => {
-				return <Template key={keyName} data={data}></Template>;
-			})}
+			{
+				!isLoading ? (userData && <Template data={userData}></Template>) : <Spinner />
+			}
 		</div>
 	)
 };

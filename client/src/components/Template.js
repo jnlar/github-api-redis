@@ -12,28 +12,28 @@ const checkIfPropNull = (property, render) => {
 const IsUser = ({ data }) => {
 	return (
 		<Fragment>
-			<h2>user: {data.userData.login}</h2>
-			<p>repos: <a href={`${data.userData.repos_url}`}>
-				{data.userData.public_repos}</a></p>
+			<h2>user: {data.login}</h2>
+			<p>repos: <a href={`${data.repos_url}`}>
+				{data.public_repos}</a></p>
 			{
-				checkIfPropNull(data.userData.bio,
-				<p>bio: {data.userData.bio}</p>)
+				checkIfPropNull(data.bio,
+				<p>bio: {data.bio}</p>)
 			}
-			<p>followers: {data.userData.followers}</p>
-			<p>following: {data.userData.following}</p>
+			<p>followers: {data.followers}</p>
+			<p>following: {data.following}</p>
 			{
-				checkIfPropNull(data.userData.company,
-				<p>company: {data.userData.company}</p>)
+				checkIfPropNull(data.company,
+				<p>company: {data.company}</p>)
 			}
 			{
-				checkIfPropNull(data.userData.location,
-				<p>location: {data.userData.location}</p>)
+				checkIfPropNull(data.location,
+				<p>location: {data.location}</p>)
 			}
-			<p>github: <a href={`${data.userData.html_url}`}>
-				{data.userData.html_url}</a></p>
+			<p>github: <a href={`${data.html_url}`}>
+				{data.html_url}</a></p>
 			{
-				checkIfPropNull(data.userData.email,
-				<p>email: {data.userData.email}</p>)
+				checkIfPropNull(data.email,
+				<p>email: {data.email}</p>)
 			}
 		</Fragment>
 	)
@@ -44,7 +44,7 @@ const Template = ({ data }) => {
 		<div className="my-card">
 			<div className="my-card-content">
 				{
-					data.userData.message ? (
+					data.message ? (
 						<IsNotUser />
 					) : (
 						<IsUser data={data} />
