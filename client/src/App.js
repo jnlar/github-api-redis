@@ -1,10 +1,15 @@
 import React, { useState, } from 'react';
 import Header from "./components/Header";
-//import Spinner from "./components/Spinner";
 import Form from "./components/Form";
 import User from "./components/User";
-import './index.scss';
 import {Grid} from "@material-ui/core";
+import './index.scss';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -32,16 +37,27 @@ const App = () => {
 	}
 
 	return (
-		<Grid
-			container
-			spacing={0}
-			direction="column"
-			alignItems="center"
-			justify="center">
-			<Header />
-			<Form onSubmit={onSubmitHandler}/>
-			<User userData={userInfo} isLoading={isLoading} />
-		</Grid>
+		<Router>
+			<Link exact to="/">App</Link>
+			<Link to="/about">About</Link>
+			<Switch>
+				<Route exact path="/">
+					<Grid
+						container
+						spacing={0}
+						direction="column"
+						alignItems="center"
+						justify="center">
+						<Header />
+						<Form onSubmit={onSubmitHandler}/>
+						<User userData={userInfo} isLoading={isLoading} />
+					</Grid>
+				</Route>
+				<Route path="/about">
+					<h2>hi</h2>
+				</Route>
+			</Switch>
+		</Router>
 	);
 };
 

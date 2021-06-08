@@ -1,6 +1,11 @@
 import React from 'react';
 import {Fragment} from 'react';
-import {Card, CardContent, Typography} from '@material-ui/core';
+import {
+	Card, 
+	CardContent, 
+	Typography,
+	makeStyles,
+	Button } from '@material-ui/core';
 
 const IsNotUser = () => {
 	return <p><em>Oops!</em> user doesn't exist!</p>
@@ -10,39 +15,56 @@ const propIsNull = (property, render) => {
 	return property === 'null' ? '' : render;
 }
 
+const useStyles = makeStyles({
+	user: {
+		minWidth: 400,
+		maxWidth: 600,
+	},
+
+	title: {
+		fontSize: 29,
+	}
+});
+
 const IsUser = ({ data }) => {
+	const classes = useStyles();
+
 	return (
 		<Fragment>
-			<h2>user: {data.login}</h2>
-			<p>repos: <a href={`${data.repos_url}`}>
-				{data.public_repos}</a></p>
+			<Typography className={classes.title} component="h2">{data.login}</Typography>
 			{
 				propIsNull(data.bio,
-				<p>bio: {data.bio}</p>)
+				<Fragment>
+					<Typography variant="h6" component="h3">Bio</Typography>
+					<Typography color="textSecondary" component="p">{data.bio}</Typography>
+				</Fragment>)
 			}
-			<p>followers: {data.followers}</p>
-			<p>following: {data.following}</p>
+			<Typography component="p">Followers: {data.followers}</Typography>
+			<Typography component="p">Following: {data.following}</Typography>
 			{
 				propIsNull(data.company,
-				<p>company: {data.company}</p>)
+				<Typography component="p">Mompany: {data.company}</Typography>)
 			}
 			{
 				propIsNull(data.location,
-				<p>location: {data.location}</p>)
+				<Typography>location: {data.location}</Typography>)
 			}
-			<p>github: <a href={`${data.html_url}`}>
-				{data.html_url}</a></p>
+			<Typography>github: <a href={`${data.html_url}`}>
+				{data.html_url}</a></Typography>
 			{
 				propIsNull(data.email,
-				<p>email: {data.email}</p>)
+				<Typography>email: {data.email}</Typography>)
 			}
+			<Button>Repos ({data.public_repos})</Button>
 		</Fragment>
 	)
 }
 
 const Template = ({ data }) => {
+	const classes = useStyles();
+
 	return (
-		<Card variant="outlined">
+		<Card className={classes.user} variant="outlined">
 			<CardContent>
 				{
 					data.message ? (

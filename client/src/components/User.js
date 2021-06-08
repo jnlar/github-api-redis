@@ -1,6 +1,5 @@
 import React from 'react';
 import Template from './Template';
-import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 
 const User = ({userData, isLoading}) => {
@@ -12,13 +11,5 @@ const User = ({userData, isLoading}) => {
 		</div>
 	)
 };
-
-/* TODO:
- * can we pass in isLoading as prop and do ternary operation? 
- * at the moment when we pass isLoading as a prop it returns undefined  
-*/
-User.propTypes = {
-	isLoading: PropTypes.bool
-}
 
 export default User;

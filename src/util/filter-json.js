@@ -22,11 +22,11 @@ const filterRepoData = (data) => {
 	let newObj = {}
 
 	for (let i = 0; i < data.length; i++) {
-		newObj[i + '_repo_name'] = `${data[i].name}`;
-		newObj[i + '_repo_desc'] = `${data[i].description}`;
-		newObj[i + '_repo_url'] = `${data[i].html_url}`;
-		newObj[i + '_repo_stars'] = `${data[i].startgazers_count}`;
-		newObj[i + '_repo_forks'] = `${data[i].forks_count}`;
+		newObj['repo_name_' + i] = `${data[i].name}`;
+		newObj['repo_desc_' + i] = `${data[i].description}`;
+		newObj['repo_url_' + i] = `${data[i].html_url}`;
+		newObj['repo_stars_ ' + i] = `${data[i].startgazers_count}`;
+		newObj['repo_forks_ ' + i] = `${data[i].forks_count}`;
 	}
 
 	return newObj;
