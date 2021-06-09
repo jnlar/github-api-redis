@@ -1,9 +1,13 @@
 import React from 'react'
+import { Typography } from '@material-ui/core';
+import useStyles from '../Style';
 
 const Header = () => {
+	const classes = useStyles();
+
 	return ( 
 		<header>
-			<h2>Github API</h2>
+			<Typography component="h1" className={classes.headerMain} variant="h4">Github API</Typography>
 		</header>
 	)
 }

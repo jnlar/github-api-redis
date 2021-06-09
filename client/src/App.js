@@ -3,29 +3,21 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import User from "./components/User";
 import About from "./components/About";
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Error from "./components/Error";
-import {Grid} from "@material-ui/core";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-  Redirect } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { Paper, Tabs, Tab, Grid, BottomNavigation } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
 import './index.scss';
+import useStyles from './Style';
 
-const useStyles = makeStyles({
-	root: {
-	  flexGrow: 1,
+const theme = createMuiTheme({
+	palette: {
+		background: {
+			default: '#f7f7f7',
+		}
 	},
-	aTag: {
-		padding: "10px 20px",
-		textDecoration: "none",
-	}
-  });
+})
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -60,40 +52,51 @@ const App = () => {
 	}
 
 	return (
-		<Router>
-	  <Paper className={classes.root}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered>
-        <Tab label={<NavLink className={classes.aTag} to="/">Home</NavLink>} />
-        <Tab label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
-      </Tabs>
-    </Paper>
-		  <Switch>
-				<Route exact path="/">
-					<Grid
-						container
-						spacing={0}
-						direction="column"
-						alignItems="center"
-						justify="center">
-						<Header />
-						<Form onSubmit={onSubmitHandler}/>
-						<User userData={userInfo} isLoading={isLoading} />
-					</Grid>
-			</Route>
-				<Route path="/about">
-					<About />
+		<MuiThemeProvider theme={theme}>
+			<CssBaseline />
+			<Router>
+				<Tabs
+					value={value}
+					onChange={handleChange}
+					className={classes.tabs}
+					indicatorColor="primary"
+					textColor="primary"
+					centered>
+					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/">App</NavLink>} />
+					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
+				</Tabs>
+				<Switch>
+					<Route exact path="/">
+						<Grid
+							container
+							spacing={0}
+							direction="column"
+							alignItems="center"
+							justify="center">
+							<Paper className={classes.paper}>
+								<Grid
+									container
+									spacing={0}
+									direction="column"
+									alignItems="center"
+									justify="center">
+									<Header />
+									<Form onSubmit={onSubmitHandler}/>
+									<User userData={userInfo} isLoading={isLoading} />
+								</Grid>
+							</Paper>
+						</Grid>
 				</Route>
-				<Route path="/error">
-					<Error />
-				</Route>
-				<Redirect to="/error"></Redirect>
-		  </Switch>
-	  </Router>
+					<Route path="/about">
+						<About />
+					</Route>
+					<Route path="/error">
+						<Error />
+					</Route>
+					<Redirect to="/error"></Redirect>
+				</Switch>
+			</Router>
+		</MuiThemeProvider>
 	);
 };
 

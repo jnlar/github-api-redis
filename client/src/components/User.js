@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Template from './Template';
 import Spinner from './Spinner';
 
 const User = ({userData, isLoading}) => {
 	return (
-		<div className="userData">
+		<Fragment>
 			{
 				!isLoading ? (userData && <Template data={userData}></Template>) : <Spinner />
 			}
-		</div>
+		</Fragment>
 	)
 };
 
