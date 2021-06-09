@@ -1,22 +1,16 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-	user: {
-		minWidth: 550,
-		maxWidth: 550,
-		marginTop: 40
-	},
-
-	title: {
-		fontSize: 29,
-	},
-
-	headerMain: {
-		padding: 40,
-	},
-
 	root: {
 	  flexGrow: 1,
+	},
+
+	tabs: {
+		borderBottom: '1px solid #dcdcdc'
+	},
+
+	tab : {
+		padding: 0
 	},
 
 	aTag: {
@@ -25,19 +19,36 @@ const useStyles = makeStyles({
 		textDecoration: "none",
 	},
 
+	headerMain: {
+		padding: 40,
+	},
+
+	title: {
+		fontSize: 29,
+		paddingBottom: 10
+	},
+
+	subTitle: {
+		fontSize: 20
+	},
+
+	user: {
+		minWidth: 550,
+		maxWidth: 550,
+		marginTop: 40
+	},
+
 	p: {
 		padding: "3px 0",
 	},
 
 	paper: {
-		margin: 40,
+		margin: 70,
 		minWidth: 600,
 		maxWidth: 600,
 		minHeight: 700,
-		borderTop: "12px solid #dcdcdc",
+		borderTop: "4px solid #dcdcdc",
 	}
-
 });
-
 
 export default useStyles;

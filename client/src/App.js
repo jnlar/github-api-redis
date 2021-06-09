@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 		background: {
 			default: '#f7f7f7',
 		}
-	}
+	},
 })
 
 const App = () => {
@@ -58,11 +58,12 @@ const App = () => {
 				<Tabs
 					value={value}
 					onChange={handleChange}
+					className={classes.tabs}
 					indicatorColor="primary"
 					textColor="primary"
 					centered>
-					<Tab label={<NavLink className={classes.aTag} to="/">App</NavLink>} />
-					<Tab label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
+					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/">App</NavLink>} />
+					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
 				</Tabs>
 				<Switch>
 					<Route exact path="/">
