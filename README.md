@@ -19,6 +19,7 @@ be listening on port 8080
 - Fix filter-json.js filterRepoData, if a user had less than 3 repos nothing would render to the screen since we where using
 a static template to filter the JSON data.
 - Spinner component is now part of the User component. When a request is made, any existing data is removed and replaced by the spinner until the request is completed.
+- Implemented Accordion component to render user repo data
 
 #### TODO:
 - Styling - When in doubt, refer to [material.io](https://material.io). [material cards](https://www.material.io/components/cards) looks pretty cool.

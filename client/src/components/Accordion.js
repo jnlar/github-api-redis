@@ -1,39 +1,37 @@
 import React, { useState, Fragment } from 'react';
-import {
-	Typography,
-	Button, } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import { withStyles } from '@material-ui/core/styles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const Accordion = withStyles({
-  root: {
-    boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
-    '&:before': {
-      display: 'none',
-    },
-    '&$expanded': {
-      margin: 'auto',
-    },
+ root: {
+	 	boxShadow: 'none'
+  },
+  heading: {
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
   },
   expanded: {},
 })(MuiAccordion);
 
 const AccordionSummary = withStyles({
   root: {
+		padding: '0px',
     marginBottom: -1,
     minHeight: 56,
+		borderTop: '1px solid #dcdcdc',
     '&$expanded': {
       minHeight: 56,
     },
   },
   content: {
     '&$expanded': {
-      margin: '12px 0',
+     margin: '5px 0',
     },
   },
   expanded: {},
@@ -41,7 +39,7 @@ const AccordionSummary = withStyles({
 
 const AccordionDetails = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
+		display: 'inline-block',
   },
 }))(MuiAccordionDetails);
 
@@ -53,25 +51,37 @@ function RepoAccordion(data) {
   };
 
   return (
-    <div>
+		<Box width="100%">
       <Accordion square expanded={expanded === 'panel'} onChange={handleChange('panel')}>
-        <AccordionSummary aria-controls="paneld-content" id="paneld-header">
-					<Button> Repos ({data.repos})</Button>
+        <AccordionSummary 
+					aria-controls="paneld-content" 
+					expandIcon={<ExpandMoreIcon />}
+					id="paneld-header">
+					<Typography component="p">Repositories</Typography>
         </AccordionSummary>
         <AccordionDetails>
 					{
 						<Fragment>
-							<p>{data.userData.repo_desc_0}</p>
-							<p>{data.userData.repo_url_0}</p>
+							<Typography component="p">{data.userData.repo_name_0}</Typography>
+							<Typography component="p">{data.userData.repo_desc_0}</Typography>
+							<Typography component="p">{data.userData.repo_url_0}</Typography>
+							<Typography component="p">{data.userData.repo_stars_0}</Typography>
+							<Typography component="p">{data.userData.repo_forks_0}</Typography>
+							<Typography component="p">{data.userData.repo_name_1}</Typography>
+							<Typography component="p">{data.userData.repo_desc_1}</Typography>
+							<Typography component="p">{data.userData.repo_url_1}</Typography>
+							<Typography component="p">{data.userData.repo_stars_1}</Typography>
+							<Typography component="p">{data.userData.repo_forks_1}</Typography>
+							<Typography component="p">{data.userData.repo_name_2}</Typography>
+							<Typography component="p">{data.userData.repo_desc_2}</Typography>
+							<Typography component="p">{data.userData.repo_url_2}</Typography>
+							<Typography component="p">{data.userData.repo_stars_2}</Typography>
+							<Typography component="p">{data.userData.repo_forks_2}</Typography>
 						</Fragment>
-						//data.userData && Object.keys(data.userData).map(prop => {
-						//	console.log(data.userData[prop[1]])
-						//	return <Typography>{data.userData[prop]}</Typography>
-						//})
 					}
         </AccordionDetails>
       </Accordion>
-    </div>
+		</Box>
   );
 }
 

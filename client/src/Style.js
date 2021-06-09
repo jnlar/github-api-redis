@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 	user: {
 		minWidth: 550,
 		maxWidth: 550,
-		marginTop: 40
+		marginTop: 40,
 	},
 
 	p: {
@@ -47,6 +47,7 @@ const useStyles = makeStyles({
 		minWidth: 600,
 		maxWidth: 600,
 		minHeight: 700,
+		paddingBottom: 25,
 		borderTop: "4px solid #dcdcdc",
 	}
 });
