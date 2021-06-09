@@ -76,7 +76,7 @@ const IsUser = ({ data }) => {
 				}
 			</CardContent>
 			<CardActions>
-				<RepoAccordion userData={data} repos={data.public_repos}/>
+				<RepoAccordion userData={data} />
 			</CardActions>
 		</Card>
 	)

@@ -6,6 +6,23 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+const clacRepos = ({userData}) => {
+	let total = 0;
+	let endFound = false;
+
+	while (!endFound) {
+		if (userData[`repo_name_${total}`]) {
+			total++;
+		} else {
+			endFound = true;
+		}
+	}
+
+  console.log(total);
+
+	return total;
+}
+
 const Accordion = withStyles({
  root: {
 	 	boxShadow: 'none'
@@ -60,25 +77,15 @@ function RepoAccordion(data) {
 					<Typography component="p">Repositories</Typography>
         </AccordionSummary>
         <AccordionDetails>
-					{
-						<Fragment>
-							<Typography component="p">{data.userData.repo_name_0}</Typography>
-							<Typography component="p">{data.userData.repo_desc_0}</Typography>
-							<Typography component="p">{data.userData.repo_url_0}</Typography>
-							<Typography component="p">{data.userData.repo_stars_0}</Typography>
-							<Typography component="p">{data.userData.repo_forks_0}</Typography>
-							<Typography component="p">{data.userData.repo_name_1}</Typography>
-							<Typography component="p">{data.userData.repo_desc_1}</Typography>
-							<Typography component="p">{data.userData.repo_url_1}</Typography>
-							<Typography component="p">{data.userData.repo_stars_1}</Typography>
-							<Typography component="p">{data.userData.repo_forks_1}</Typography>
-							<Typography component="p">{data.userData.repo_name_2}</Typography>
-							<Typography component="p">{data.userData.repo_desc_2}</Typography>
-							<Typography component="p">{data.userData.repo_url_2}</Typography>
-							<Typography component="p">{data.userData.repo_stars_2}</Typography>
-							<Typography component="p">{data.userData.repo_forks_2}</Typography>
-						</Fragment>
-					}
+          {
+            [...Array(clacRepos(data))].map((_, index) => {
+                return <Fragment>
+                    <Typography component="p">{data.userData[`repo_name_${index}`]}</Typography>
+                    <Typography component="p">{data.userData[`repo_desc_${index}`]}</Typography>
+                    <Typography component="a" href={data.userData[`repo_url_${index}`]}>Visit</Typography>
+                  </Fragment>
+            })
+          }
         </AccordionDetails>
       </Accordion>
 		</Box>
