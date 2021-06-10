@@ -1,7 +1,9 @@
 const {client} = require('../util/modules');
 
 const insertIntoCache = (username, data) => {
-	return client.hmset(username, data);
+	return client.hmset(username, data, () => {
+		client.expire(username, 60 * 60 * 10);
+	});
 }
 
 const cache = (req, res, next) => {
