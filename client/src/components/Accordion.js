@@ -81,8 +81,8 @@ function RepoAccordion(data) {
             [...Array(clacRepos(data))].map((_, index) => {
                 return <Fragment>
                     <Typography component="p">{data.userData[`repo_name_${index}`]}</Typography>
-                    <Typography component="p">{data.userData[`repo_desc_${index}`]}</Typography>
-                    <Typography component="a" href={data.userData[`repo_url_${index}`]}>Visit</Typography>
+                    <Typography component="p">{data.userData[`repo_desc_${index}`] !== 'null' ? data.userData[`repo_desc_${index}`] : "No description provided."}</Typography>
+                    <Typography component="a" target="_blank" href={data.userData[`repo_url_${index}`]}>{data.userData[`repo_url_${index}`]}</Typography>
                   </Fragment>
             })
           }
