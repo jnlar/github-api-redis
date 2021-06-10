@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 	user: {
 		minWidth: 550,
-		['@media (max-width:700px)']: {
+		'@media (max-width:700px)': {
 			minWidth: 350,
 		  },
 		maxWidth: 550,
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 	paper: {
 		margin: 70,
 		minWidth: 600,
-		['@media (max-width:700px)']: {
+		'@media (max-width:700px)': {
 			minWidth: 350,
 		  },
 		maxWidth: 600,
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 	  },
 	  paragraph: {
 		padding: theme.spacing(5, 20),
-		['@media (max-width:700px)']: {
+		'@media (max-width:700px)': {
 			padding: theme.spacing(5),
 		  },
 		margin: theme.spacing(3),
@@ -95,10 +95,10 @@ const useStyles = makeStyles((theme) => ({
 	  },
 	  paragraphError: {
 		padding: theme.spacing(0, 30),
-		['@media (max-width:1050px)']: {
+		'@media (max-width:1050px)': {
 			padding: theme.spacing(0, 15),
 		  },
-		  ['@media (max-width:700px)']: {
+		  '@media (max-width:700px)': {
 			padding: theme.spacing(0),
 		  },
 		margin: theme.spacing(3),
