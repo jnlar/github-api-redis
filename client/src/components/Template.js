@@ -63,7 +63,7 @@ const IsUser = ({ data }) => {
 				}
 				<Typography 
 					className={classes.p}
-					component="p">Github: <a href={`${data.html_url}`}>
+					component="p">Github: <a target="_blank" href={`${data.html_url}`}>
 					{data.html_url}</a>
 				</Typography>
 				{
