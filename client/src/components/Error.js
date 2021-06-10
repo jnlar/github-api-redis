@@ -14,7 +14,7 @@ export default function FullWidthGrid() {
       <Grid container spacing={3}>
 	  <Grid item xs={12}>
           <Paper className={classes.paragraphError}>
-		  <h1>404 Page not found</h1>
+		  <h1>404 Page not found.</h1>
 			<img alt="coffee cup spilling over" src={Coffee} />
 			<Button className={classes.button} variant="outlined" color="secondary" href="/">Back</Button>
 		  </Paper>
