@@ -1,9 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import {
 	Card, 
 	CardContent, 
-	Typography,
-	Button, 
+	Typography, 
 	CardActions, } from '@material-ui/core';
 import useStyles from '../Style';
 import RepoAccordion from './Accordion';
