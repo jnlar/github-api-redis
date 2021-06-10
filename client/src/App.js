@@ -32,7 +32,7 @@ const App = () => {
 
 	const onSubmitHandler = async (event) => {
 		event.preventDefault();
-		let user = event.target.githubUsername.value;
+		let user = event.target.githubUsername.value.toLowerCase();
 
 		if (user.trim() !== "") {
 			try {
