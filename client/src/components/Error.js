@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -11,19 +11,17 @@ export default function FullWidthGrid() {
   const classes = useStyles();
 
   return (
-		<Fragment>
-			<Box className={classes.root}>
-				<Grid container spacing={3}>
-					<Grid item xs={12}>
-						<Paper className={classes.paragraphError}>
-							<Typography className={classes.headerMain} component="h1" variant="h4">404 Page not found</Typography>
-							<Typography component="img" alt="coffee cup spilling over" src={Coffee} />
-							<Button className={classes.button} variant="outlined" color="secondary" href="/">Back</Button>
-						</Paper>
-					</Grid>
+		<Box className={classes.root}>
+			<Grid container spacing={3}>
+				<Grid item xs={12}>
+					<Paper className={classes.paragraphError}>
+						<Typography className={classes.headerMain} component="h1" variant="h4">404 Page not found</Typography>
+						<Typography component="img" alt="coffee cup spilling over" src={Coffee} />
+						<Button className={classes.button} variant="outlined" color="secondary" href="/">Back</Button>
+					</Paper>
 				</Grid>
-			</Box>
-		</Fragment>
+			</Grid>
+		</Box>
   );
 }
 
