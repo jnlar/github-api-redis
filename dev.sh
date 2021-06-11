@@ -2,6 +2,11 @@
 
 JSON="package.json"
 NM="node_modules"
+LOCK="*-lock.json"
+
+clean() {
+	find ./$LOCK ./client/$LOCK -exec rm -f {} \;
+}
 
 start_services() {
 	if [[ -e "./$NM" ]] && [[ -e "./client/$NM" ]]; then
@@ -10,20 +15,18 @@ start_services() {
 	fi
 }
 
+install_dep() {
+	if [[ -f "./$JSON"  ]] && [[ -f "./client/$JSON"  ]]; then
+		npm install \
+		&& cd client \
+		&& npm install && cd ../
+	fi
+
+	clean
+}
+
 case $1 in
-	fresh) 
-		if [[ -f "./$JSON"  ]] && [[ -f "./client/$JSON"  ]]; then
-			npm install \
-			&& cd client \
-			&& npm install && cd ../
-		fi
-		
-		find ./*lock.json -exec \
-			rm -f {} \;
-
-		find ./client/*lock.json -exec \
-			rm -f {} \; 
-
-		start_services ;;
+	install) install_dep ;;
 	start) start_services ;;
+	fresh) install_dep && start_services ;;
 esac

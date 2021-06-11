@@ -11,8 +11,9 @@ be listening on port 8080
 
 #### Installing & deploying via dev.sh:
 `chmod +x dev.sh` - make the shell script executable  
-`./dev.sh fresh` - This will install all the deps and start both services up   
-`./dev.sh start` - Run this if you've already installed all the deps, this will start both Reactjs and Node.js services  
+`./dev.sh install` - This will install all the deps   
+`./dev.sh start` - Run this if you've already installed all the deps, this will start both Reactjs and Node.js  
+`./dev.sh fresh` - This will install dependencies and deploy Reactjs and Node.js (ideal on freshly cloned repo etc)
 
 #### Recent changes:
 - Data fetched from API is returned in JSON, this way we can better handle the data on the front-end with react.
