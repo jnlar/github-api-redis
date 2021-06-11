@@ -1,14 +1,19 @@
 import React, { Fragment } from 'react';
+import useStyles from '../Style';
+import RepoAccordion from './Accordion';
 import {
 	Card, 
 	CardContent, 
 	Typography, 
 	CardActions, } from '@material-ui/core';
-import useStyles from '../Style';
-import RepoAccordion from './Accordion';
 
 const IsNotUser = () => {
-	return <p><em>Oops!</em> user doesn't exist!</p>
+	const classes = useStyles();
+
+	return <Typography className={classes.p} component="p">
+		<Typography component="em">Oops! </Typography>
+			either user doesn't exist or the internet is broken...
+		</Typography>
 }
 
 const propIsNull = (property, render) => {
@@ -63,7 +68,7 @@ const IsUser = ({ data }) => {
 				}
 				<Typography 
 					className={classes.p}
-					component="p">Github: <a target="_blank" href={`${data.html_url}`}>
+					component="p">Github: <a rel="noreferrer" target="_blank" href={`${data.html_url}`}>
 					{data.html_url}</a>
 				</Typography>
 				{

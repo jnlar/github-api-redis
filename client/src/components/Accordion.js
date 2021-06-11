@@ -1,10 +1,11 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Typography, Box } from '@material-ui/core';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import useStyles from '../Style';
 
 const clacRepos = ({userData}) => {
 	let total = 0;
@@ -17,8 +18,6 @@ const clacRepos = ({userData}) => {
 			endFound = true;
 		}
 	}
-
-  console.log(total);
 
 	return total;
 }
@@ -57,11 +56,13 @@ const AccordionSummary = withStyles({
 const AccordionDetails = withStyles((theme) => ({
   root: {
 		display: 'inline-block',
+		padding: '7px'
   },
 }))(MuiAccordionDetails);
 
 function RepoAccordion(data) {
   const [expanded, setExpanded] = useState(false);
+	const classes = useStyles();
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -74,16 +75,27 @@ function RepoAccordion(data) {
 					aria-controls="paneld-content" 
 					expandIcon={<ExpandMoreIcon />}
 					id="paneld-header">
-					<Typography component="p">Repositories</Typography>
+					<Typography className={classes.accordionSum} component="p">Repositories</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {
             [...Array(clacRepos(data))].map((_, index) => {
-                return <Fragment>
-                    <Typography component="p">{data.userData[`repo_name_${index}`]}</Typography>
-                    <Typography component="p">{data.userData[`repo_desc_${index}`] !== 'null' ? data.userData[`repo_desc_${index}`] : "No description provided."}</Typography>
-                    <Typography component="a" target="_blank" href={data.userData[`repo_url_${index}`]}>{data.userData[`repo_url_${index}`]}</Typography>
-                  </Fragment>
+							return <Box className={classes.repoBox}>
+								<Typography className={classes.subTitle} 
+									component="h2">{data.userData[`repo_name_${index}`]}
+								</Typography>
+								<Typography className={classes.p} color="textSecondary" component="p">
+									{data.userData[`repo_desc_${index}`] !== 'null' 
+									? data.userData[`repo_desc_${index}`] 
+									: <Typography component="p" color="textSecondary">
+									No description provided.</Typography>}
+								</Typography>
+								<Typography className={classes.p} component="a" 
+									target="_blank" 
+									href={data.userData[`repo_url_${index}`]}>
+									{data.userData[`repo_url_${index}`]}
+								</Typography>
+							</Box>
             })
           }
         </AccordionDetails>

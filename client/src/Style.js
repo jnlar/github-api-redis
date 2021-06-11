@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	headerMain: {
-		padding: 40,
+		padding: 25,
 	},
 
 	title: {
@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 20
 	},
 
+	fieldset: {
+		all: 'unset'
+	},
+
 	user: {
 		minWidth: 550,
 		'@media (max-width:700px)': {
@@ -41,6 +45,12 @@ const useStyles = makeStyles((theme) => ({
 		  },
 		maxWidth: 550,
 		marginTop: 40,
+		marginRight: 10,
+		marginLeft: 10
+	},
+
+	repoBox: {
+		paddingBottom: 15
 	},
 
 	p: {
@@ -52,12 +62,13 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: 600,
 		'@media (max-width:700px)': {
 			minWidth: 350,
-		  },
+		},
 		maxWidth: 600,
-		minHeight: 700,
+		minHeight: 200,
 		paddingBottom: 25,
 		borderTop: "4px solid #dcdcdc",
 	},
+
 	content: {
 		alignItems:"center",
 		justifyContent:"center",
@@ -82,18 +93,21 @@ const useStyles = makeStyles((theme) => ({
 		"& h1":{
 			textAlign: 'center',
 		}
-	  },
-	  contact: {
+	},
+
+	contact: {
 		padding: theme.spacing(1),
 		margin: theme.spacing(3),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
-	  },
-	  button: {
+	},
+
+	button: {
 		padding: theme.spacing(1, 5),
 		margin: theme.spacing(3),
-	  },
-	  paragraphError: {
+	},
+
+	paragraphError: {
 		padding: theme.spacing(0, 30),
 		'@media (max-width:1050px)': {
 			padding: theme.spacing(0, 15),
@@ -110,7 +124,11 @@ const useStyles = makeStyles((theme) => ({
 		"& img":{
 			width: "100%",
 		}
-	  }
+	},
+
+	accordionSum: {
+		padding: theme.spacing(0, 1)
+	}
 }));
 
 export default useStyles;

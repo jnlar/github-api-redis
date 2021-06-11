@@ -9,6 +9,11 @@ Starting backend (node.js) - run `npm start` in the root directory
 Starting frontend (reactjs) - run `cd client && npm start` in the root directory (or `cd client` and then `npm start`), the client will
 be listening on port 8080
 
+#### Installing & deploying via dev.sh:
+`chmod +x dev.sh` - make the shell script executable  
+`./dev.sh fresh` - This will install all the deps and start both services up   
+`./dev.sh start` - Run this if you've already installed all the deps, this will start both Reactjs and Node.js services  
+
 #### Recent changes:
 - Data fetched from API is returned in JSON, this way we can better handle the data on the front-end with react.
 - React components implemented to handle and format returned JSON data from backend API
@@ -20,7 +25,3 @@ be listening on port 8080
 a static template to filter the JSON data.
 - Spinner component is now part of the User component. When a request is made, any existing data is removed and replaced by the spinner until the request is completed.
 - Implemented Accordion component to render user repo data
-
-#### TODO:
-- Styling - When in doubt, refer to [material.io](https://material.io). [material cards](https://www.material.io/components/cards) looks pretty cool.
-- Add hyperlink that fetches repo data of searched user, create new component that will render the users repo data.

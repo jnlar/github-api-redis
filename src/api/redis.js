@@ -2,7 +2,8 @@ const {client} = require('../util/modules');
 
 const insertIntoCache = (username, data) => {
 	return client.hmset(username, data, () => {
-		client.expire(username, 60 * 60 * 10);
+		/* hash will expire after 10 minutes */
+		client.expire(username, 60 * 10);
 	});
 }
 

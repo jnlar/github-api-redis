@@ -6,9 +6,8 @@ import About from "./components/About";
 import Error from "./components/Error";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
-import { Paper, Tabs, Tab, Grid, BottomNavigation } from '@material-ui/core';
+import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
-import './index.scss';
 import useStyles from './Style';
 
 const theme = createMuiTheme({
@@ -86,7 +85,7 @@ const App = () => {
 								</Grid>
 							</Paper>
 						</Grid>
-				</Route>
+					</Route>
 					<Route path="/about">
 						<About />
 					</Route>

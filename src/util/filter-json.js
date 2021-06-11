@@ -16,8 +16,6 @@ const filterUserData = (data) => {
 	return data;
 }
 
-// iterate though array, where each item in array is object
-// create new object for n items in sliced array. n = max (3)
 const filterRepoData = (data) => {
 	let newObj = {}
 

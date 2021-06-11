@@ -6,9 +6,9 @@ const Header = () => {
 	const classes = useStyles();
 
 	return ( 
-		<header>
+		<Typography component="header">
 			<Typography component="h1" className={classes.headerMain} variant="h4">Github API</Typography>
-		</header>
+		</Typography>
 	)
 }
 
