@@ -23,8 +23,6 @@ const filterRepoData = (data) => {
 		newObj['repo_name_' + i] = `${data[i].name}`;
 		newObj['repo_desc_' + i] = `${data[i].description}`;
 		newObj['repo_url_' + i] = `${data[i].html_url}`;
-		newObj['repo_stars_ ' + i] = `${data[i].startgazers_count}`;
-		newObj['repo_forks_ ' + i] = `${data[i].forks_count}`;
 	}
 
 	return newObj;

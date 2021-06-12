@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.use(helmet());
 router.use(express.json());
-router.get('/', api.limiter, api.cache, api.getUserData);
+router.get('/', api.limiter, api.checkCache, api.getUserData);
 
 app.use('/api/user', router);
 app.use(api.notFound);

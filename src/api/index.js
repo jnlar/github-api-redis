@@ -1,7 +1,10 @@
 const {env, fetch, rateLimit} = require('../util/modules');
-const f = require('../util/filter-json');
+const filter = require('../util/filter-json');
 const redis = require('./redis');
-const cache = redis.cache;
+const filterUserData = filter.filterUserData;
+const filterRepoData = filter.filterRepoData;
+const checkCache = redis.checkCache;
+const insertIntoCache = redis.insertIntoCache;
 
 const limiter = rateLimit({
 	/* max 50 requests every 30 seconds */
@@ -33,14 +36,14 @@ const getUserData = async (req, res) => {
 		const userRepoData = await fetchUserRepos.json();
 
 		const slicedRepoData = userRepoData.slice(0, 3);
-		const filteredUserData = f.filterUserData(userData);
-		const filteredRepoData = f.filterRepoData(slicedRepoData);
+		const filteredUserData = filterUserData(userData);
+		const filteredRepoData = filterRepoData(slicedRepoData);
 
 		const joinedData = {...filteredUserData, ...filteredRepoData};
 
-		redis.insertIntoCache(username, joinedData);
+		insertIntoCache(username, joinedData);
 
-		return res.send(joinedData);
+		return res.status(200).send(joinedData);
 	} catch (err) {
 		console.error(err);
 		return res.send(err);
@@ -48,4 +51,4 @@ const getUserData = async (req, res) => {
 
 }
 
-module.exports = {limiter, cache, getUserData, notFound};
+module.exports = {limiter, checkCache, getUserData, notFound};

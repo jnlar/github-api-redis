@@ -1,22 +1,31 @@
 const {client} = require('../util/modules');
+const util = require('util');
+const ttl = util.promisify(client.ttl).bind(client);
 
 const insertIntoCache = (username, data) => {
 	return client.hmset(username, data, () => {
-		/* hash will expire after 10 minutes */
 		client.expire(username, 60 * 10);
 	});
 }
 
-const cache = (req, res, next) => {
+const checkCache = (req, res, next) => {
 	const username = req.query.username;
 
-	client.hgetall(username, (err, data) => {
-		if (err) return next(err);
+	client.hgetall(username, async (err, data) => {
+		try {
+			if (err) return next();
 
-		if (data !== null) {
-			return res.send(data);
-		} else next();
+			const remainingTime = await ttl(username);
+
+			if (remainingTime < 300) {
+				return next();
+			} else {
+				return res.status(304).send(data);
+			}
+		} catch (err) {
+			return next();
+		}
 	})
 }
 
-module.exports = {insertIntoCache, cache};
+module.exports = {insertIntoCache, checkCache};
