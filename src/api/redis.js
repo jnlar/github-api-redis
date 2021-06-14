@@ -1,5 +1,12 @@
-const {client} = require('../util/modules');
+const redis = require('redis');
 const util = require('util');
+
+const client = redis.createClient(process.env.REDIS_TLS_URL, {
+	tls: {
+		rejectUnauthorized: false
+	}
+})
+
 const ttl = util.promisify(client.ttl).bind(client);
 
 const insertIntoCache = (username, data) => {
@@ -28,4 +35,7 @@ const checkCache = (req, res, next) => {
 	})
 }
 
-module.exports = {insertIntoCache, checkCache};
+module.exports = {
+	insertIntoCache,
+	checkCache
+}

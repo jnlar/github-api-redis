@@ -1,11 +1,7 @@
-const { app, express } = require('./util/modules');
-const api = require('./api');
-const helmet = require ('helmet');
-const router = express.Router();
+const app = require('./app');
 
-router.use(helmet());
-router.use(express.json());
-router.get('/', api.limiter, api.checkCache, api.getUserData);
+const PORT = process.env.PORT || 3030;
 
-app.use('/api/user', router);
-app.use(api.notFound);
+app.listen(PORT, () => {
+	console.log(`Listening on port: ${PORT}`);
+})

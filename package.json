@@ -1,11 +1,11 @@
 {
-  "name": "redis-cache",
+  "name": "github-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "just some pals building stuff",
   "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server"
+    "start": "node src/server"
   },
   "keywords": [],
   "author": "",
