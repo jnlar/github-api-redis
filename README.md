@@ -1,6 +1,6 @@
 ## github-api-redis
 
-### Heroku deployment branch
+### Heroku deployment build
 
 This build is deployed to Heroku
 
@@ -8,7 +8,11 @@ This build is deployed to Heroku
 
 `cd client && npm run build`
 
-#### Deploy to Heroku
+#### Test locally
+
+Refer to Heroku [documentation](https://devcenter.heroku.com/articles/heroku-local)
+
+#### Deploy to Web
 
 `git push heroku main`
 
