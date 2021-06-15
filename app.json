@@ -1,0 +1,22 @@
+{
+  "name": "Github API",
+  "description": "Just some pals building things.",
+  "keywords": [
+    "Node.js",
+    "HTML5",
+    "JavaScript",
+    "Reactjs",
+    "Material-ui",
+    "Redis"
+  ],
+  "website": "https://d9vtm39z.herokuapp.com/",
+  "repository": "https://github.com/jnlar/github-api-redis",
+  "success_url": "/",
+  "env": {
+		"buildpacks": [
+			{
+				"url": "https://github.com/heroku/heroku-buildpack-nodejs"
+			}
+		]
+	}
+}
