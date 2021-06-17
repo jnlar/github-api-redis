@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import useStyles from '../Style';
 
@@ -36,28 +36,28 @@ export default function FullWidthGrid() {
 					<Paper className={classes.paperAbout}>
 						<h2>Jonathan Archer</h2>
 						<p>jon357@pm.me</p>
-						<Button target="_blank" href="https://github.com/jnlar"><GitHubIcon /></Button>
+						<Typography component="a" target="_blank" href="https://github.com/jnlar"><GitHubIcon /></Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paperAbout}>
 						<h2>Nathan Williams</h2>
 						<p>contact@nathwebdev.com</p>
-						<Button target="_blank" href="https://github.com/Creeds1996"><GitHubIcon /></Button>
+						<Typography component="a" target="_blank" href="https://github.com/Creeds1996"><GitHubIcon /></Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paperAbout}>
 						<h2>Mohammad Rabbani</h2>
 						<p>ngnengr@yahoo.com</p>
-						<Button target="_blank" href="https://github.com/ngnengr"><GitHubIcon /></Button>
+						<Typography component="a" target="_blank" href="https://github.com/ngnengr"><GitHubIcon /></Typography>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Paper className={classes.paperAbout}>
 						<h2>Gus Costa</h2>
 						<p>gustavo_leon88@hotmail.com</p>
-						<Button target="_blank" href="https://github.com/Guscosta88"><GitHubIcon /></Button>
+						<Typography component="a" target="_blank" href="https://github.com/Guscosta88"><GitHubIcon /></Typography>
 					</Paper>
 				</Grid>
 			</Grid>

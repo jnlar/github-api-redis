@@ -7,7 +7,7 @@ import Error from "./components/Error";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
-import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import useStyles from './Style';
 
 const theme = createMuiTheme({
@@ -61,8 +61,8 @@ const App = () => {
 					indicatorColor="primary"
 					textColor="primary"
 					centered>
-					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/">App</NavLink>} />
-					<Tab className={classes.tab} label={<NavLink className={classes.aTag} to="/about">About</NavLink>} />
+					<Tab className={classes.tab} label="App" component={Link} to="/" />
+					<Tab className={classes.tab} label="About" component={Link} to="/about" />
 				</Tabs>
 				<Switch>
 					<Route exact path="/">

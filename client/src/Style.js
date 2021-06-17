@@ -14,6 +14,18 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%'
 	},
 
+	goToCode: {
+		position: 'relative',
+		left: '47%',
+		color: '#a0a0a0',
+		'&:hover': {
+			color: 'blue'
+		},
+		'@media (max-width: 700px)': {
+			left: '45%'
+		}
+	},
+
 	aTag: {
 		width: '100%',
 		height: '100%',
@@ -22,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	headerMain: {
-		padding: 25,
+		padding: 25
 	},
 
 	title: {
